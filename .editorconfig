@@ -1,0 +1,13 @@
+# Set file in project root
+root = true
+# For all files
+[*]
+	# Use Standard Charset
+	charset = utf-8
+	# Unix Style of File
+	end_of_line = lf
+	insert_final_newline = true
+	trim_trailing_whitespace = true
+	# 4 Tab Identation
+	indent_style = tab
+	tab_width = 4

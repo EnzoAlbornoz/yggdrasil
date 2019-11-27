@@ -1,0 +1,21 @@
+{
+  "name": "yggdrasil",
+  "version": "0.0.1",
+  "description": "A microsservice framework ready for Modern JS",
+  "main": "index.js",
+  "repository": "https://github.com/EnzoAlbornoz/yggdrasil.git",
+  "author": "Enzo Albornoz <enzocoelhoalbornoz@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^1.19.1"
+  }
+}
