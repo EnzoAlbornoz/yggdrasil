@@ -4,7 +4,6 @@
 		"module": "commonjs",
 		"target": "es6",
 		"moduleResolution": "node"
-		// "noResolve": true
 	},
 	"include": ["src/**/*", "@types/**/*", "node_modules/@types/**/*"],
 	"exclude": ["node_modules"]

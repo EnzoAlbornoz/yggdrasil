@@ -1,12 +1,31 @@
 const { createLogger, transports, format } = require("winston");
 const chalk = require("chalk");
+
 const caller = require("caller.js");
-const path = require("path");
 
 const dayjs = require("../lib/util/dayjs");
+
+const path = require("path");
+/**
+ * Class for enable Modules to log
+ */
 class Loggable {
+	/**
+	 * Class Constructor
+	 * @param {string} context String
+	 * representating the class context.
+	 * Example: [Yggdrasil.Controllers]
+	 */
 	constructor(context) {
+		/**
+		 * @type {string}
+		 * @description String representating the class context.
+		 */
 		this.context = context || "";
+		/**
+		 * @type {import("winston").Logger}
+		 * @description Winston logger used on this class
+		 */
 		this.logger = createLogger({
 			level: "debug",
 			transports: [
@@ -58,6 +77,11 @@ class Loggable {
 		});
 	}
 
+	/**
+	 * @description Logs a message [Debug Level]
+	 * @param {*} message
+	 * @param  {...any} optionalMessages
+	 */
 	log(message, ...optionalMessages) {
 		const chain = caller.getChain();
 		let executor = "";
@@ -91,6 +115,11 @@ class Loggable {
 		this.logger.debug(parsedMessage, { executor, context });
 	}
 
+	/**
+	 * @description Logs a message [Info Level]
+	 * @param {*} message
+	 * @param  {...any} optionalMessages
+	 */
 	info(message, ...optionalMessages) {
 		const chain = caller.getChain();
 		let executor = "";
@@ -124,6 +153,11 @@ class Loggable {
 		this.logger.info(parsedMessage, { executor, context });
 	}
 
+	/**
+	 * @description Logs a message [Warn Level]
+	 * @param {*} message
+	 * @param  {...any} optionalMessages
+	 */
 	warn(message, ...optionalMessages) {
 		const chain = caller.getChain();
 		let executor = "";
@@ -157,6 +191,11 @@ class Loggable {
 		this.logger.warn(parsedMessage, { executor, context });
 	}
 
+	/**
+	 * @description Logs a message [Error Level]
+	 * @param {*} message
+	 * @param  {...any} optionalMessages
+	 */
 	error(message, ...optionalMessages) {
 		const chain = caller.getChain();
 		let executor = "";

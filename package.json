@@ -8,8 +8,8 @@
 	"license": "MIT",
 	"private": false,
 	"devDependencies": {
-		"@types/dotenv": "^8.2.0",
 		"@types/node": "^12.12.14",
+		"ava": "^2.4.0",
 		"eslint": "^6.7.1",
 		"eslint-config-prettier": "^6.7.0",
 		"eslint-config-standard": "^14.1.0",
