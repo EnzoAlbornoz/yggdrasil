@@ -21,7 +21,7 @@ class Loggable {
 		 * @type {string}
 		 * @description String representating the class context.
 		 */
-		this.context = context || "";
+		this.context = (context || "").toLowerCase();
 		/**
 		 * @type {import("winston").Logger}
 		 * @description Winston logger used on this class
@@ -109,10 +109,10 @@ class Loggable {
 				message = message.toString();
 			}
 
-			parsedMessage += " ".concat(message);
+			parsedMessage += message.concat(" ");
 		}
 
-		this.logger.debug(parsedMessage, { executor, context });
+		this.logger.debug(parsedMessage.trim(), { executor, context });
 	}
 
 	/**
@@ -147,10 +147,10 @@ class Loggable {
 				message = message.toString();
 			}
 
-			parsedMessage += " ".concat(message);
+			parsedMessage += message.concat(" ");
 		}
 
-		this.logger.info(parsedMessage, { executor, context });
+		this.logger.info(parsedMessage.trim(), { executor, context });
 	}
 
 	/**
@@ -185,10 +185,10 @@ class Loggable {
 				message = message.toString();
 			}
 
-			parsedMessage += " ".concat(message);
+			parsedMessage += message.concat(" ");
 		}
 
-		this.logger.warn(parsedMessage, { executor, context });
+		this.logger.warn(parsedMessage.trim(), { executor, context });
 	}
 
 	/**
@@ -223,10 +223,10 @@ class Loggable {
 				message = message.toString();
 			}
 
-			parsedMessage += " ".concat(message);
+			parsedMessage += message.concat(" ");
 		}
 
-		this.logger.error(parsedMessage, { executor, context });
+		this.logger.error(parsedMessage.trim(), { executor, context });
 	}
 }
 
