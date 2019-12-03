@@ -2,10 +2,9 @@
 	"compilerOptions": {
 		"checkJs": true,
 		"module": "commonjs",
-		"target": "es6",
-		"moduleResolution": "node",
-		"noResolve": true
+		"target": "es2018",
+		"moduleResolution": "node"
 	},
-	"include": ["src/**/*", "@types/**/*"],
+	"include": ["src/**/*", "@types/**/*", "node_modules/@types/**/*"],
 	"exclude": ["node_modules"]
 }
