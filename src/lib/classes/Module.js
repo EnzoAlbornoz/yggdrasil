@@ -9,12 +9,12 @@ class Module extends Loggable {
 		throw new Error("[Abstract Method] Implementation Required");
 	}
 
-	attach(yggRef) {
-		// After typescript 3.8 -> Will change to this.#yggref
-		if (this.yggRef) {
+	attach(yggApp) {
+		// After typescript 3.8 -> Will change to this.#yggApp
+		if (this.yggApp) {
 			throw new Error("Module already attached");
 		}
-		this.yggRef = yggRef;
+		this.yggApp = yggApp;
 		return this;
 	}
 }

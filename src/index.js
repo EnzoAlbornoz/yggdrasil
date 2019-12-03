@@ -19,4 +19,14 @@ require("dotenv").config({
 	path: require("path").resolve(__dirname, dotenvPath)
 });
 
-module.exports = require("./core/Yggdrasil");
+module.exports = {
+	Yggdrasil: require("./core/Yggdrasil"),
+	modules: {
+		Controllers: require("./core/modules/Controllers")
+	},
+	classes: {
+		Controller: require("./lib/classes/Controller"),
+		Loggable: require("./lib/classes/Loggable"),
+		Module: require("./lib/classes/Module")
+	}
+};

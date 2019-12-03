@@ -3,7 +3,7 @@ const chalk = require("chalk");
 
 const caller = require("caller.js");
 
-const dayjs = require("../lib/util/dayjs");
+const dayjs = require("../util/dayjs");
 
 const path = require("path");
 /**
@@ -64,8 +64,8 @@ class Loggable {
 					silent:
 						process.env.LOG_ENABLE_OUTPUT.toLowerCase() === "false",
 					filename: path.resolve(
-						__dirname,
-						"../../temp/logs",
+						process.cwd(),
+						"./temp/logs",
 						"yggdrasil.log"
 					),
 					maxFiles: parseInt(process.env.LOG_OUTPUT_MAXFILES) || 10, // Total of Default 100 MB
@@ -109,7 +109,7 @@ class Loggable {
 				message = message.toString();
 			}
 
-			parsedMessage += message.concat(" ");
+			parsedMessage += "".concat(message, " ");
 		}
 
 		this.logger.debug(parsedMessage.trim(), { executor, context });
@@ -147,7 +147,7 @@ class Loggable {
 				message = message.toString();
 			}
 
-			parsedMessage += message.concat(" ");
+			parsedMessage += "".concat(message, " ");
 		}
 
 		this.logger.info(parsedMessage.trim(), { executor, context });
@@ -185,7 +185,7 @@ class Loggable {
 				message = message.toString();
 			}
 
-			parsedMessage += message.concat(" ");
+			parsedMessage += "".concat(message, " ");
 		}
 
 		this.logger.warn(parsedMessage.trim(), { executor, context });
@@ -223,7 +223,7 @@ class Loggable {
 				message = message.toString();
 			}
 
-			parsedMessage += message.concat(" ");
+			parsedMessage += "".concat(message, " ");
 		}
 
 		this.logger.error(parsedMessage.trim(), { executor, context });

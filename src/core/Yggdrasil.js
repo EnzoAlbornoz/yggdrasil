@@ -1,5 +1,5 @@
-const Loggable = require("../classes/Loggable");
-const Module = require("../classes/Module");
+const Loggable = require("../lib/classes/Loggable");
+const Module = require("../lib/classes/Module");
 
 const PROJECT_NAME = "yggdrasil";
 const VERSION = "0.1.0";
@@ -9,9 +9,15 @@ class Yggdrasil extends Loggable {
 	constructor() {
 		super(PROJECT_NAME);
 		/**
-		 * @type {Object.<string,import("../classes/Module")>}
+		 * @type {Object.<string,import("../lib/classes/Module")>}
+		 * @description Local where framework modules are stored
 		 */
 		this.modules = {};
+		/**
+		 * @type {Object}
+		 * @description Interface object where modules communicate
+		 */
+		this.app = {};
 	}
 
 	static get version() {
@@ -22,9 +28,13 @@ class Yggdrasil extends Loggable {
 		return AUTHOR;
 	}
 
+	static get project() {
+		return PROJECT_NAME;
+	}
+
 	/**
 	 * @description Set the framework to use an specified module
-	 * @param {import("../classes/Module.js")} yggdrasilModule Module to use into this instance
+	 * @param {import("../lib/classes/Module.js")} yggdrasilModule Module to use into this instance
 	 */
 	use(yggdrasilModule) {
 		if (yggdrasilModule instanceof Module) {
@@ -32,7 +42,7 @@ class Yggdrasil extends Loggable {
 			if (this.modules[moduleName]) {
 				throw new Error("Module already in use");
 			} else {
-				this.modules[moduleName] = yggdrasilModule.attach(this);
+				this.modules[moduleName] = yggdrasilModule.attach(this.app);
 			}
 		} else {
 			throw new Error("Specified parameter is not a Module of Yggdrasil");
