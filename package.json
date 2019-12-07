@@ -2,7 +2,7 @@
 	"name": "yggdrasil",
 	"version": "0.0.1",
 	"description": "A microsservice framework ready for Modern JS",
-	"main": "index.js",
+	"main": "./src/index.js",
 	"repository": "https://github.com/EnzoAlbornoz/yggdrasil.git",
 	"author": "Enzo Albornoz <enzocoelhoalbornoz@gmail.com>",
 	"license": "MIT",
@@ -29,6 +29,7 @@
 		"fastify-static": "^2.5.1",
 		"handlebars": "^4.5.3",
 		"point-of-view": "^3.7.0",
+		"strip-ansi": "^6.0.0",
 		"winston": "^3.2.1"
 	}
 }

@@ -1,5 +1,6 @@
 const { createLogger, transports, format } = require("winston");
 const chalk = require("chalk");
+const strip = require("strip-ansi");
 
 const caller = require("caller.js");
 
@@ -71,7 +72,11 @@ class Loggable {
 					maxFiles: parseInt(process.env.LOG_OUTPUT_MAXFILES) || 10, // Total of Default 100 MB
 					maxsize:
 						parseInt(process.env.LOG_OUTPUT_LOGSIZE) || 10 ** 6, // 10 MB
-					format: format.combine(format.timestamp(), format.json())
+					format: format.combine(
+						format.timestamp(),
+						stripAnsi(),
+						format.json()
+					)
 				})
 			]
 		});
@@ -235,6 +240,22 @@ const timestampFormat = format((info, opts) => {
 	info.timestamp = dayjs().format(opts.format, {
 		timeZone: process.env.TZ || "UTC"
 	});
+	return info;
+});
+
+const stripAnsi = format((info, opts) => {
+	if (info.message) {
+		info.message = strip(info.message);
+	}
+
+	if (info.contex) {
+		info.contex = strip(info.contex);
+	}
+
+	if (info.executor) {
+		info.executor = strip(info.executor);
+	}
+
 	return info;
 });
 

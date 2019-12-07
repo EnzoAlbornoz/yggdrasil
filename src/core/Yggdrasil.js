@@ -50,6 +50,7 @@ class Yggdrasil extends Loggable {
 	}
 
 	async start() {
+		// this.info("Starting Framework ...");
 		if (this.modules) {
 			const modulesOnInit = Object.values(this.modules).map(
 				async yggModule => {
@@ -65,6 +66,7 @@ class Yggdrasil extends Loggable {
 			);
 			await Promise.all(modulesOnReady);
 		}
+		// this.info("Framework Started!");
 	}
 }
 
