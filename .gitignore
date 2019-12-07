@@ -106,3 +106,5 @@ dist
 
 # Ignore Silly Tests
 test/silly
+test/modules
+test/integration

@@ -22,7 +22,8 @@ require("dotenv").config({
 module.exports = {
 	Yggdrasil: require("./core/Yggdrasil"),
 	modules: {
-		Controllers: require("./core/modules/Controllers")
+		Controllers: require("./core/modules/Controllers"),
+		APIs: require("./core/modules/APIs")
 	},
 	classes: {
 		Controller: require("./lib/classes/Controller"),

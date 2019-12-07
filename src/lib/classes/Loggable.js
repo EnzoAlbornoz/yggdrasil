@@ -82,7 +82,7 @@ class Loggable {
 	 * @param {*} message
 	 * @param  {...any} optionalMessages
 	 */
-	log(message, ...optionalMessages) {
+	async log(message, ...optionalMessages) {
 		const chain = caller.getChain();
 		let executor = "";
 		for (let k = 0; k < chain.length; k++) {
@@ -120,7 +120,7 @@ class Loggable {
 	 * @param {*} message
 	 * @param  {...any} optionalMessages
 	 */
-	info(message, ...optionalMessages) {
+	async info(message, ...optionalMessages) {
 		const chain = caller.getChain();
 		let executor = "";
 		for (let k = 0; k < chain.length; k++) {
@@ -158,7 +158,7 @@ class Loggable {
 	 * @param {*} message
 	 * @param  {...any} optionalMessages
 	 */
-	warn(message, ...optionalMessages) {
+	async warn(message, ...optionalMessages) {
 		const chain = caller.getChain();
 		let executor = "";
 		for (let k = 0; k < chain.length; k++) {
@@ -196,7 +196,7 @@ class Loggable {
 	 * @param {*} message
 	 * @param  {...any} optionalMessages
 	 */
-	error(message, ...optionalMessages) {
+	async error(message, ...optionalMessages) {
 		const chain = caller.getChain();
 		let executor = "";
 		for (let k = 0; k < chain.length; k++) {

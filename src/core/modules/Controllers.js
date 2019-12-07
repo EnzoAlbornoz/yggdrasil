@@ -18,7 +18,9 @@ class Controllers extends Module {
 		/**
 		 * @type {ControllersHolder} Local where external controllers are stored
 		 */
-		this.controllers = loadControllers(options.controllersDir);
+		this.controllers = loadControllers(
+			path.resolve(options.controllersDir)
+		);
 	}
 
 	attach(yggApp) {
@@ -27,8 +29,10 @@ class Controllers extends Module {
 	}
 
 	async onInit() {
-		this.log(this.yggApp);
-		this.yggApp.controllers = this.controllers;
+		this.yggApp.controllers = Object.assign(
+			this.yggApp.controllers || {},
+			this.controllers
+		);
 		const processAll = Promise.all(
 			Object.values(this.controllers).map(async controlller =>
 				controlller.onInit()
@@ -49,7 +53,7 @@ class Controllers extends Module {
 
 /**
  *
- * @param {import("fs").PathLike} controllersDir
+ * @param {string} controllersDir
  * @param {string} prefix Some prefix to append on controller name
  */
 function loadControllers(controllersDir, prefix = "") {
@@ -58,10 +62,7 @@ function loadControllers(controllersDir, prefix = "") {
 
 	if (fs.existsSync(controllersDir)) {
 		for (const controller of fs.readdirSync(controllersDir)) {
-			const filePath = path.join(
-				/** @type {string} */ (controllersDir),
-				controller
-			);
+			const filePath = path.join(controllersDir, controller);
 			const ctrlName = prefix.concat(
 				path.basename(controller, path.extname(controller))
 			);
@@ -71,7 +72,7 @@ function loadControllers(controllersDir, prefix = "") {
 					loadControllers(filePath, ctrlName.concat("."))
 				);
 			} else if (path.extname(filePath) === ".js") {
-				const ControllerClass = /** @type {ControllerType} */ (require(filePath));
+				const ControllerClass = require(filePath);
 				modules[ctrlName] = new ControllerClass(ctrlName);
 			}
 		}
@@ -92,7 +93,7 @@ function attachControllers(holder, yggApp) {
 
 /**
  *  @typedef {Object} ControllersModuleOptions
-	@property {import("fs").PathLike} controllersDir Absolute path of the folder containing controllers
+	@property {string} controllersDir Absolute path of the folder containing controllers
  */
 
 /**
